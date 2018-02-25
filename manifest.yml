@@ -1,0 +1,10 @@
+applications:
+- name: redis-backup
+  random-route: true
+  docker:
+    image: epoelke/redis-backup:demo
+  instances: 1
+  memory: 512M
+  services:
+  - redis-instance
+  - redis-backup-bucket

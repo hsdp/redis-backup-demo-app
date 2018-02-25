@@ -1,0 +1,6 @@
+boto3==1.5.36
+Flask==0.12.2
+RandomWords==0.2.1
+redis==2.10.6
+redis-dump-load==1.1
+uWSGI==2.0.16
