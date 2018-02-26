@@ -1,3 +1,6 @@
+redis-backup-demo-app
+=====================
+
 This application demonstrates how to use Cloud Foundry tasks with a docker
 based application to backup a redis database to an s3 bucket.  HSDP specific
 service brokers are used in the instructions so other platforms may require

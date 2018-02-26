@@ -11,7 +11,7 @@ def get_creds(service_name, tag=None):
         if tag:
             creds = {
                 k: v for (k,v) in item.items()
-                if k == 'credentials' if tag in d['tags']
+                if k == 'credentials' and tag in d['tags']
             }
         else:
             creds = {k: v for (k,v) in item.items() if k == 'credentials'}
