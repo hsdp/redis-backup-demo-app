@@ -11,7 +11,7 @@ from boto3.session import Session
 parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, parent_dir)
 
-from utils.vcap_creds import get_creds
+from utils import vcap
 
 
 def redis_restore(redis_creds, tempfile):
@@ -67,8 +67,9 @@ def parse_args():
 
 def main():
     args = parse_args()
-    bucket_creds = get_creds('hsdp-s3', tag=args.s3_tag)
-    redis_creds = get_creds('hsdp-redis-sentinel', tag=args.redis_tag)
+    bucket_creds = vcap.creds('hsdp-s3', tag=args.s3_tag)
+    redis_creds = vcap.strip_redis_creds(
+        vcap.creds('hsdp-redis-sentinel', tag=args.redis_tag))
     copy_from_s3(bucket_creds, args.s3_key, args.tempfile)
     redis_restore(redis_creds, args.tempfile)
     remove_file(args.tempfile)

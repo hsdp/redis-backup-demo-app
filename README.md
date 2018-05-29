@@ -24,8 +24,8 @@ than the names used in the example commands.
 
 **Create backing services**
 ```
-cf cs hsdp-redis-sentinel redis-development redis-instance
-cf cs hsdp-s3 s3_bucket redis-backup-bucket
+cf cs hsdp-redis-sentinel redis-development redis
+cf cs hsdp-s3 s3_bucket s3
 ```
 The `hsdp-redis-sentinel` service broker is asynchronous so you will need to
 wait until provisioning is completed before proceeding.  Check the status of

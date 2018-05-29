@@ -9,7 +9,7 @@ from redis import Redis
 parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, parent_dir)
 
-from utils.vcap_creds import get_creds
+from utils import vcap
 
 
 def parse_args():
@@ -24,7 +24,8 @@ def parse_args():
 
 def main():
     args = parse_args()
-    redis_creds = get_creds('hsdp-redis-sentinel', tag=args.redis_tag)
+    redis_creds = vcap.strip_redis_creds(
+        vcap.creds('hsdp-redis-sentinel', tag=args.redis_tag))
     r = Redis(**redis_creds)
     r.flushall()
     print("Redis data flushed!")

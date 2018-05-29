@@ -1,12 +1,12 @@
 import os
 from redis import Redis
 from flask import Flask, request, abort, jsonify
-from utils.vcap_creds import get_creds
+from utils import vcap
 
 
 app = Flask(__name__)
 port = os.getenv('PORT', '8080')
-redis_creds = get_creds('hsdp-redis-sentinel')
+redis_creds = vcap.strip_redis_creds(vcap.creds('hsdp-redis-sentinel'))
 
 
 @app.route('/hello')
